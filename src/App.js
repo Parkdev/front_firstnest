@@ -31,7 +31,7 @@ function App() {
             Tailwind CSS
           </span>
           <div className="ml-3">
-            <FileUpload />
+            <FileUpload token={token} />
           </div>
         </div>
         <div className="">

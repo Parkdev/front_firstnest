@@ -2,7 +2,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import axios from "axios";
 
-function FileUpload() {
+function FileUpload(token) {
   const [files, setFiles] = useState([]);
 
   const handleFilesChange = (e) => {
@@ -14,15 +14,16 @@ function FileUpload() {
     const formData = new FormData();
 
     files.map((file) => {
-      formData.append("files", file);
+      formData.append("image", file);
     });
 
-    console.log(Array.from(formData));
+    console.log("token이야", token);
 
     axios
       .post("http://localhost:8000/cats/upload", formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+          //   "Content-Type": "multipart/form-data",
         },
       })
       .then((res) => {
