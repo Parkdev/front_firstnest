@@ -1,7 +1,7 @@
-// import logo from "./logo.svg";
 import "./App.css";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import FileUpload from "./components/popover";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -10,13 +10,13 @@ function App() {
   const [result, setResult] = useState("");
   const [token, setToken] = useState("");
 
-  useEffect(() => {
-    console.log("token: ", token);
-  }, [token, setToken]);
+  // useEffect(() => {
+  //   console.log("token: ", token);
+  // }, [token, setToken]);
 
   return (
     <div className="flex h-screen flex-col">
-      <nav className="flex flex-wrap items-center justify-between bg-teal-500 p-6">
+      <nav className="flex w-full items-center justify-between bg-teal-500 p-6">
         <div className="mr-6 flex flex-shrink-0 items-center text-white">
           <svg
             className="mr-2 h-8 w-8 fill-current"
@@ -30,33 +30,16 @@ function App() {
           <span className="text-xl font-semibold tracking-tight">
             Tailwind CSS
           </span>
-        </div>
-        <div className="block lg:hidden">
-          <button className="flex items-center rounded border border-teal-400 px-3 py-2 text-teal-200 hover:border-white hover:text-white">
-            <svg
-              className="h-3 w-3 fill-current"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>Menu</title>
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-            </svg>
-          </button>
-        </div>
-        <div className="block w-full flex-grow lg:flex lg:w-auto lg:items-center">
-          <div className="text-sm lg:flex-grow">
-            <a
-              href="#responsive-header"
-              className="mr-4 mt-4 hidden text-teal-200 hover:text-white lg:mt-0 lg:block lg:inline-block"
-            >
-              Menu 1
-            </a>
+          <div className="ml-3">
+            <FileUpload />
           </div>
+        </div>
+        <div className="">
           <div>
             {token ? (
               <button
                 href="/"
-                className="mt-4 hidden rounded border border-white bg-orange-500 px-4 py-2 text-sm leading-none text-white hover:border-transparent hover:bg-orange-300 hover:text-teal-500 lg:mt-0 lg:inline-block"
+                className="mt-4 inline-block rounded border border-white bg-orange-500 px-4 py-2 text-sm leading-none text-white hover:border-transparent hover:bg-orange-300 hover:text-teal-500 lg:mt-0"
                 onClick={() => {
                   setToken("");
                 }}
@@ -66,7 +49,7 @@ function App() {
             ) : (
               <a
                 href="/"
-                className="mt-4 hidden rounded border border-white px-4 py-2 text-sm leading-none text-white hover:border-transparent hover:bg-white hover:text-teal-500 lg:mt-0 lg:inline-block"
+                className="mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none text-white hover:border-transparent hover:bg-white hover:text-teal-500 lg:mt-0"
               >
                 Login
               </a>
@@ -120,7 +103,7 @@ function App() {
                 className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
                 id="password"
                 type="password"
-                placeholder="******************"
+                placeholder="***"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
