@@ -53,12 +53,24 @@ function App() {
             </a>
           </div>
           <div>
-            <a
-              href="/"
-              className="mt-4 hidden rounded border border-white px-4 py-2 text-sm leading-none text-white hover:border-transparent hover:bg-white hover:text-teal-500 lg:mt-0 lg:inline-block"
-            >
-              Login
-            </a>
+            {token ? (
+              <button
+                href="/"
+                className="mt-4 hidden rounded border border-white bg-orange-500 px-4 py-2 text-sm leading-none text-white hover:border-transparent hover:bg-orange-300 hover:text-teal-500 lg:mt-0 lg:inline-block"
+                onClick={() => {
+                  setToken("");
+                }}
+              >
+                Logout
+              </button>
+            ) : (
+              <a
+                href="/"
+                className="mt-4 hidden rounded border border-white px-4 py-2 text-sm leading-none text-white hover:border-transparent hover:bg-white hover:text-teal-500 lg:mt-0 lg:inline-block"
+              >
+                Login
+              </a>
+            )}
           </div>
         </div>
       </nav>
