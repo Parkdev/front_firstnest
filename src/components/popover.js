@@ -1,11 +1,11 @@
 import { Popover, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 
 function FileUpload(token) {
   const [files, setFiles] = useState([]);
 
-  const handleFilesChange = (e) => {
+  const handleFilesChange = async (e) => {
     setFiles(Array.from(e.target.files));
   };
 
@@ -13,26 +13,32 @@ function FileUpload(token) {
     e.preventDefault();
     const formData = new FormData();
 
-    files.map((file) => {
-      formData.append("image", file);
-    });
+    // files.map((file) => {
+    formData.append("image", files[0]);
+    // });
 
-    console.log("token이야", token);
+    console.log("파일", files);
+    console.log("폼데이터", formData);
+    console.log("토큰", token);
 
     axios
       .post("http://localhost:8000/cats/upload", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          //   "Content-Type": "multipart/form-data",
+          "Content-Type": "multipart/form-data",
         },
       })
       .then((res) => {
         console.log(res.data);
       })
       .catch((err) => {
-        console.error(err);
+        console.error("에러야", err);
       });
   };
+
+  useEffect(() => {
+    console.log(files);
+  }, [files]);
 
   return (
     <Popover className="relative">
